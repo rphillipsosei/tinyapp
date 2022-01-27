@@ -29,6 +29,7 @@ function generateRandomString(length) {
 app.set("view engine", "ejs")
 
 app.get("/", (req, res) => {
+  console.log(users)
   res.send("Hello!");
 });
 
