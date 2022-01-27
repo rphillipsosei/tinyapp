@@ -9,11 +9,11 @@
         <div class="navbar-nav">
           <a class="nav-item nav-link" href="/urls">My URLs</a>
           <a class="nav-item nav-link" href="/urls/new">Create New URL</a>
-          <% if(!username) {%>
-            <form name="username" action="/login" method="POST" class="form-inline">
+          <!-- <% if(username) {%> ****KEEPING LOGGED IN AS IF USERNAME -->
+            <!-- <form name="username" action="/login" method="POST" class="form-inline">
             <input class="form-control" type="text" name="username"  style="width: 300px; margin: 1em">
             <button type="submit">Log In</button></form>
-          <%} else {%>
+          <%} else {%> -->
             <form name="username" action="/logout" method="POST" class="form-inline">
             <button type="submit">Log Out</button></form>
          Logged in as: <%= username %>
