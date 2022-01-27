@@ -44,10 +44,10 @@ function generateRandomString(length) {
 function checkUser(email) {
   for (let element in users) {
     if (users[element].email === email) {
-      return true;
+      return users[element];
     }
   }
-  return false;
+  return null;
 }
 
 app.set("view engine", "ejs")
@@ -80,7 +80,7 @@ app.get("/urls/:shortURL", (req, res) => {
 });
 
 app.post("/urls", (req, res) => {
-  res.send("Ok");         // Respond with 'Ok' (we will replace this)
+  res.send("Ok");         
 });
 
 app.get("/u/:shortURL", (req, res) => {
@@ -95,25 +95,27 @@ app.post("/urls/:shortURL/delete", (req, res) => {
 })
 
 app.post("/login", (req, res) => {
-res.cookie("user", users[req.body.user_id])
-res.redirect("/urls")
 
-const idKey = user_id 
 const email = req.body.email;
 const password = req.body.password;
 
-if (!users[email].include(email)) {
-  return res.status(403).send("Sorry, email entered does not match our files.");
+const user = checkUser(email);
+
+if (!email || !password) {
+  return res.status(400).send("Please enter email and/or password.");
 }
-const userExist = checkUser(email);
-
-if (userExist && password === users[password]) {
-res.cookie("user_id", idKey);
-res.redirect("/urls")
+if (!user) {
+  return res.status(403).send("Sorry, email entered does not match our files.");
 };
-
-
-})
+if(user.password !== password){
+  return res.status(403).send("Sorry, the credentials entered do not match our files.");
+} 
+// if(user.password !== password && user.email !==email) {
+// res.redirect("/login")
+// }
+res.cookie("user_id", user.id);
+res.redirect("/urls")
+});
 
 app.post("/logout", (req, res) => {
   res.clearCookie("user_id")
