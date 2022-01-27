@@ -102,8 +102,8 @@ const idKey = user_id
 const email = req.body.email;
 const password = req.body.password;
 
-if (!email || !password || !users[email].include(email) || !users[password].include(password)) {
-  return res.status(400).send("Please enter valid email and/or password.");
+if (!users[email].include(email)) {
+  return res.status(403).send("Sorry, email entered does not match our files.");
 }
 const userExist = checkUser(email);
 
@@ -134,12 +134,12 @@ app.post('/register', (req, res) => {
   
 //conditionals for reg errors (reg errors)
   if (!email || !password) {
-    return res.status(403).send("Please enter email and/or password.");
+    return res.status(400).send("Please enter email and/or password.");
   }
   const userExist = checkUser(email);
 
   if (userExist) {
-    return res.status(403).send("Sorry, user already exists!");
+    return res.status(400).send("Sorry, user already exists!");
   };
   //object to be filled out by client inputs then pushed to users(new users)
   const newUser = {
