@@ -101,3 +101,36 @@ app.get('/register', (req, res) => {
   res.render("register", templateVars)
 })
 
+app.post('/register', (req, res) => {
+  //define keys in new user object(new users)
+  const idKey = generateRandomString(10)
+  const email = req.body.email;
+  const password = req.body.password;
+ //object to be filled out by client inputs then pushed to users(new users)
+  const newUser = {
+    id: idKey,
+    email: email,
+    password: password,
+  };
+  function checkUser(email) {
+    for (element in users) {
+      if (users[element].email === email) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  if (!email || password === " " || !password) {
+    return res.status(403).send("Please enter valid credentials.");
+  }
+  const userExist = checkUser(email);
+
+  if (userExist) {
+    return res.status(403).send("Sorry, user already exists!");
+  };
+//cookie recording generated id(new usesrs)
+  res.cookie("user_id", idKey);
+  //redirect to urls (new users)
+  res.redirect("/urls")
+})
