@@ -68,13 +68,14 @@ if true, add it to new empty object
 
 */
 
-function urlsForUser(id){
-  let urls = {}
-  for(let url in urlDatabase){
-    if(urlDatabase[url].userID === req.session.user_id){
-      urls[url] =  urlDatabase[url]
+function urlsForUser(id) {
+  let urls = {};
+  for (let url in urlDatabase) {
+    if (urlDatabase[url].userID === req.session.user_id) {
+      urls[url] = urlDatabase[url];
     }
   }
+  return urls;
 }
 
 app.set("view engine", "ejs");
@@ -101,6 +102,8 @@ app.get("/urls", (req, res) => {
   const templateVars = { urls: urlDatabase, user: users[userID] };
   res.render("urls_index", templateVars);
 });
+
+app.get;
 
 app.get("/urls/new", (req, res) => {
   const templateVars = { user: users[req.session.user_id] };
@@ -151,16 +154,15 @@ app.post("/login", (req, res) => {
       .status(403)
       .send("Sorry, email entered does not match our files.");
   }
-  console.log("password", password)
-  console.log("rbp", req.body.password)
-  console.log(bcrypt.compareSync(req.body.password, password))
-  console.log("user", user)
+  console.log("password", password);
+  console.log("rbp", req.body.password);
+  console.log(bcrypt.compareSync(req.body.password, password));
+  console.log("user", user);
   if (!bcrypt.compareSync(req.body.password, password)) {
     return res
       .status(403)
       .send("Sorry, the credentials entered do not match our files.");
-    
-    }
+  }
 
   //res.cookie("user_id", user.id);
   req.session.user_id = user.id;
