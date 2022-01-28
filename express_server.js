@@ -70,9 +70,9 @@ if true, add it to new empty object
 
 function urlsForUser(id){
   let urls = {}
-  for(let element in urlDatabase){
-    if(urlDatabase[element].userID === req.session.user_id){
-      urls.userDatabase[element] =  userDatabase[element].longURL
+  for(let url in urlDatabase){
+    if(urlDatabase[url].userID === req.session.user_id){
+      urls[url] =  urlDatabase[url]
     }
   }
 }
