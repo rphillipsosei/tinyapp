@@ -51,7 +51,7 @@ function generateRandomString(length) {
   }
 
   return result;
-}
+};
 
 function checkUser(email) {
   for (let element in users) {
@@ -60,7 +60,7 @@ function checkUser(email) {
     }
   }
   return null;
-}
+};
 
 /*loop through urldb, 
 check for each urldb[key].userID should = session user id
@@ -73,15 +73,14 @@ function urlsForUser(id) {
   for (let url in urlDatabase) {
     if (urlDatabase[url].userID === req.session.user_id) {
       urls[url] = urlDatabase[url];
-    }
-  }
+    };
+  };
   return urls;
-}
+};
 
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  console.log(users);
   res.send("Hello!");
 });
 
@@ -94,11 +93,10 @@ app.get("/hello", (req, res) => {
 });
 
 app.get("/urls", (req, res) => {
-  // const userID = req.cookies["user_id"];
   const userID = req.session.user_id;
   if (userID == null) {
     return res.redirect("/login");
-  }
+  };
   const templateVars = { urls: urlDatabase, user: users[userID] };
   res.render("urls_index", templateVars);
 });
@@ -113,7 +111,7 @@ app.get("/urls/new", (req, res) => {
 app.get("/urls/:shortURL", (req, res) => {
   if (!urlDatabase[req.params.shortURL]) {
     return res.status(404).send("Short URL does not exist.");
-  }
+  };
   const templateVars = {
     shortURL: req.params.shortURL,
     longURL: urlDatabase[req.params.shortURL].longURL,
@@ -148,23 +146,20 @@ app.post("/login", (req, res) => {
   const password = user ? user.password : null;
   if (!email || !password) {
     return res.status(400).send("Please enter email and/or password.");
-  }
+  };
   if (!user) {
     return res
       .status(403)
       .send("Sorry, email entered does not match our files.");
-  }
-  console.log("password", password);
-  console.log("rbp", req.body.password);
-  console.log(bcrypt.compareSync(req.body.password, password));
-  console.log("user", user);
+  };
+
   if (!bcrypt.compareSync(req.body.password, password)) {
     return res
       .status(403)
       .send("Sorry, the credentials entered do not match our files.");
-  }
+  };
 
-  //res.cookie("user_id", user.id);
+  
   req.session.user_id = user.id;
   res.redirect("/urls");
 });
@@ -188,12 +183,12 @@ app.post("/register", (req, res) => {
   //conditionals for reg errors (reg errors)
   if (!email || !password) {
     return res.status(400).send("Please enter email and/or password.");
-  }
+  };
   const userExist = checkUser(email);
 
   if (userExist) {
     return res.status(400).send("Sorry, user already exists!");
-  }
+  };
   //object to be filled out by client inputs then pushed to users(new users)
   const newUser = {
     id: idKey,
@@ -205,14 +200,13 @@ app.post("/register", (req, res) => {
   users[idKey] = newUser;
 
   //cookie recording generated id(new usesrs)
-  //res.cookie("user_id", idKey);
-  req.session.user_id = idKey;
+    req.session.user_id = idKey;
   //redirect to urls (new users)
   res.redirect("/urls");
 });
 
 //login get req (new login page)
 app.get("/login", (req, res) => {
-  const templateVars = { user: null }; //not correct, how to access required i
+  const templateVars = { user: null }; 
   res.render("login", templateVars);
 });
