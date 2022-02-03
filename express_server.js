@@ -62,11 +62,6 @@ function checkUser(email) {
   return null;
 };
 
-/*loop through urldb, 
-check for each urldb[key].userID should = session user id
-if true, add it to new empty object
-
-*/
 
 function urlsForUser(id) {
   let urls = {};
@@ -81,7 +76,11 @@ function urlsForUser(id) {
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  res.send("Hello!");
+  if (req.session = null){
+    res.redirect("/login")
+  } else {
+    res.redirect("/urls")
+  }
 });
 
 app.listen(PORT, () => {
@@ -95,13 +94,13 @@ app.get("/hello", (req, res) => {
 app.get("/urls", (req, res) => {
   const userID = req.session.user_id;
   if (userID == null) {
-    return res.redirect("/login");
+    res.redirect("/login")
   };
+
   const templateVars = { urls: urlDatabase, user: users[userID] };
   res.render("urls_index", templateVars);
 });
 
-app.get;
 
 app.get("/urls/new", (req, res) => {
   const templateVars = { user: users[req.session.user_id] };
@@ -112,6 +111,7 @@ app.get("/urls/:shortURL", (req, res) => {
   if (!urlDatabase[req.params.shortURL]) {
     return res.status(404).send("Short URL does not exist.");
   };
+
   const templateVars = {
     shortURL: req.params.shortURL,
     longURL: urlDatabase[req.params.shortURL].longURL,
