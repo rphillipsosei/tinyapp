@@ -19,10 +19,7 @@
           >Create New URL</a>
 
         <% if(!user) {%>
-        <!-- <form name="register" action="/register" method="GET" class="form-inline">
-              <button type="submit" style="float: right">Register</button></form>
-              <form name="login" action="/login" method="GET" class="form-inline">
-                <button type="submit" style="float: right">Login</button></form> -->
+      
         <a class="btn btn-primary" href="/login">Log In</a>
 
         <a class="btn btn-primary" href="/register">Register</a>
@@ -33,7 +30,7 @@
           method="POST"
           class="form-inline"
         >
-        <a class="btn btn-primary" href="/register">Log Out</a>
+        <button class="btn btn-primary">Log Out</button>
         </form>
         Logged in as: <%= user.email %> <% } %>
       </div>
