@@ -89,6 +89,10 @@ app.get("/urls/:shortURL", (req, res) => {
     return res.status(404).send("Short URL does not exist.");
   }
 
+  if (req.session.user_id !== urlDatabase[req.params.shortURL].userID) {
+    return res.redirect("/login")
+  }
+
   const templateVars = {
     shortURL: req.params.shortURL,
     longURL: urlDatabase[req.params.shortURL].longURL,
@@ -114,6 +118,17 @@ app.get("/u/:shortURL", (req, res) => {
 
 app.post("/urls/:shortURL/delete", (req, res) => {
   delete urlDatabase[req.params.shortURL];
+  res.redirect("/urls");
+});
+
+app.post("/urls/:shortURL/edit", (req, res) => {
+  if (!req.session.user_id) {
+    return res.status(401).send("You must be logged in to edit short URLs.");
+  }
+  if (req.session.user_id !== urlDatabase[req.params.shortURL].userID) {
+    return res.status(403).send("You do not have permission to edit this URL.");
+  }
+  urlDatabase[req.params.shortURL].longURL = req.body.longURL;
   res.redirect("/urls");
 });
 
@@ -144,7 +159,6 @@ app.post("/login", (req, res) => {
 
 app.post("/logout", (req, res) => {
   req.session = null;
-  // res.clearCookie("user_id")
   console.log("hello");
   res.redirect("/urls");
 });
