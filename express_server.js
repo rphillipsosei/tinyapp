@@ -80,8 +80,13 @@ app.get("/urls", (req, res) => {
 });
 
 app.get("/urls/new", (req, res) => {
+   if(!req.session.user_id){
+    res.redirect("/login")
+    
+  } else {
   const templateVars = { user: users[req.session.user_id] };
   res.render("urls_new", templateVars);
+  }
 });
 
 app.get("/urls/:shortURL", (req, res) => {
@@ -102,6 +107,9 @@ app.get("/urls/:shortURL", (req, res) => {
 
 app.post("/urls", (req, res) => {
   const userID = req.session.user_id;
+  if(!userID){
+    return res.status(401).send("You are not authorized to make this change.");
+  } else {
   const shortURL = generateRandomString(6);
   const longURL = req.body.longURL;
   urlDatabase[shortURL] = {
@@ -109,19 +117,31 @@ app.post("/urls", (req, res) => {
     userID: userID,
   };
   res.redirect("/urls");
+}
 });
 
 app.get("/u/:shortURL", (req, res) => {
-  const longURL = urlDatabase[req.params.shortURL].longURL;
+  const shortURL = urlDatabase[req.params.shortURL]
+  
+  if(!shortURL){
+    return res.status(404).send("This URL does not exist");
+  } else {
+  const longURL = shortURL.longURL;
   res.redirect(longURL);
+  }
 });
 
 app.post("/urls/:shortURL/delete", (req, res) => {
+  const userID = req.session.user_id;
+  if(!userID){
+    return res.status(401).send("You are not authorized to make this change.");
+  } else {
   delete urlDatabase[req.params.shortURL];
   res.redirect("/urls");
+  }
 });
 
-app.post("/urls/:shortURL/edit", (req, res) => {
+app.post("/urls/:shortURL", (req, res) => {
   if (!req.session.user_id) {
     return res.status(401).send("You must be logged in to edit short URLs.");
   }
@@ -164,8 +184,12 @@ app.post("/logout", (req, res) => {
 });
 
 app.get("/register", (req, res) => {
+  if(req.session.user_id) {
+    res.redirect("/urls") 
+  } else {
   const templateVars = { user: null };
   res.render("register", templateVars);
+  }
 });
 
 app.post("/register", (req, res) => {
@@ -202,8 +226,10 @@ app.post("/register", (req, res) => {
 //login get req (new login page)
 
 app.get("/login", (req, res) => {
-  console.log(req.session.user_id);
-  //const templateVars = { user: null };
+  if(req.session.user_id) {
+    res.redirect("/urls") 
+  } else {
   const templateVars = { user: users[req.session.user_id] };
   res.render("login", templateVars);
+  }
 });
