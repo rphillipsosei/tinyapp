@@ -1,43 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <title>TinyApp</title>
-</head>
-<body>
-          <%- include('partials/_header') %>
+  <!--Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet"> 
 
-  <main style="margin: 1em;">
-    <h3>My URLs</h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Short URL</th>
-          <th scope="col">Long URL</th>
-          <th scope="col">Edit</th>
-          <th scope="col">Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% for(let url in urls) { %>
+
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <title>TinyApp</title>
+  </head>
+  <body>
+    <%- include('partials/_header') %>
+
+    <main style="margin: 1em">
+      <h3
+      style="font-family:Rajdhani, sans-serif; font-size: 40px; margin-left: 0.5rem;"
+      >My URLs</h3>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= url %></td>
-            <td><%= urls[url].longURL %></td>
-            
-            <td><form method="GET" action="/urls/<%= url %>"><button type="submit">Edit</button></form></td>
-            <td><form method="POST" action="/urls/<%= url %>/delete"><button type="submit">Delete</button></form></td>
+            <th scope="col"
+            style="font-family:Rajdhani, sans-serif; font-size: 25px;"
+            >Short URL</th>
+            <th scope="col"
+            style="font-family:Rajdhani, sans-serif; font-size: 25px;"
+            >Long URL</th>
+            <th scope="col"
+            style="font-family:Rajdhani, sans-serif; font-size: 25px;"
+            >Edit</th>
+            <th scope="col"
+            style="font-family:Rajdhani, sans-serif; font-size: 25px;"
+            >Delete</th>
           </tr>
-        <% } %>
-      </tbody>
-    </table>
-  </main>
-  <!-- Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
+        </thead>
+        <tbody>
+          <% for(let url in urls) { %>
+          <tr>
+            <td
+            style="font-family:Rajdhani, sans-serif; font-size: 20px; font-weight: bold;"
+            ><%= url %></td>
+            <td
+            style="font-family:Rajdhani, sans-serif; font-size: 20px;"
+            ><%= urls[url].longURL %></td>
+
+            <td
+            style="font-family:Rajdhani, sans-serif; font-size: 20px;"
+            >
+              <form method="GET" action="/urls/<%= url %>">
+                <button 
+                style="
+                border: 1px solid black;
+                background-color: white;
+                color: black;
+                font-family:Rajdhani, sans-serif;
+                width: 3.5rem;
+                cursor: pointer;
+              "
+                type="submit">Edit</button>
+              </form>
+            </td>
+            <td
+            style="font-family:Rajdhani, sans-serif; font-size: 20px;"
+            >
+              <form method="POST" action="/urls/<%= url %>/delete">
+                <button 
+                style="
+                border: 1px solid black;
+                background-color: white;
+                color: black;
+                font-family:Rajdhani, sans-serif;
+                width: 5rem;
+                cursor: pointer
+              "
+                type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </main>
+    <!-- Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

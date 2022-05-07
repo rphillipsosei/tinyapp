@@ -1,7 +1,19 @@
+<head>
+    <!--Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet"> 
+
+  
+</head>
+
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-success">
-    <a class="navbar-brand" href="/urls">TinyApp</a>
+  <nav class="navbar navbar-expand-md navbar-dark bg-success
+  " styles="background-color: blue !important;">
+    <a class="navbar-brand" href="/urls" 
+    style="font-family:Rajdhani, sans-serif; font-size: 55px;">TinyApp</a>
     <button
+    style="font-family:Rajdhani;"
       class="navbar-toggler"
       type="button"
       data-toggle="collapse"
@@ -13,26 +25,51 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        
       <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/urls">My URLs</a>
+        <a class="nav-item nav-link" href="/urls" 
+        style="font-family:Rajdhani; font-size: 20px;">My URLs</a>
         <a class="nav-item nav-link" href="/urls/new"
-          >Create New URL</a>
-
-        <% if(!user) {%>
-      
-        <a class="btn btn-primary" href="/login">Log In</a>
-
-        <a class="btn btn-primary" href="/register">Register</a>
-        <%} else {%>
-        <form
-          name="username"
-          action="/logout"
-          method="POST"
-          class="form-inline"
-        >
-        <button class="btn btn-primary">Log Out</button>
-        </form>
-        Logged in as: <%= user.email %> <% } %>
+        style="font-family:Rajdhani; font-size: 20px;"
+        >Create New URL</a>
+      </div>
+ 
+          <% if (!user) { %>
+        <div class="d-flex navbar-nav align-items-center ml-auto">            
+          <a class="nav-item nav-link"  style="font-family:Rajdhani; font-size: 20px;" href="/register">Register</a>
+          <a class="nav-item nav-link"  style="font-family:Rajdhani; font-size: 20px;" href="/login">Login</a>
+        </div>          
+          <% } else { %>
+         
+        <div class="navbar-nav d-flex align-items-center justify-content-center ml-auto">
+          <form class="d-flex align-items-center" action="/logout" method="POST"    
+          style="
+         width: 300px;
+       display: flex;
+       justify-content: space-between;
+        ">
+            <p class="text-white"
+            style="font-family:Rajdhani; font-size: 20px;"
+            >
+              <b>Logged in as: </b>
+              <%=user.email%>
+            </p>
+            <p>
+            <button 
+            style="
+        
+            border-color: white;
+            color: white;
+            font-family:Rajdhani;
+            font-size: 20px;
+          "
+            type="submit" class="btn btn-outline-dark mx-2">
+              LOGOUT
+            </button>
+           </p>
+          </form>
+        </div>          
+          <% } %>
       </div>
     </div>
   </nav>

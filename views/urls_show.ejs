@@ -3,20 +3,27 @@
 <head>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  
+    <!--Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap" rel="stylesheet"> 
+
+
   <title>URL - TinyApp Example</title>
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-expand-md navbar-dark bg-success">
-          <a class="navbar-brand" href="/urls">TinyApp</a>
+          <a class="navbar-brand" href="/urls" style="font-family:Rajdhani, sans-serif; font-size: 55px;">TinyApp</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="/urls">My URLs</a>
-              <a class="nav-item nav-link" href="/urls/new">Create New URL</a>
+              <a class="nav-item nav-link" href="/urls" style="font-family:Rajdhani; font-size: 20px;">My URLs</a>
+              <a class="nav-item nav-link" href="/urls/new" style="font-family:Rajdhani; font-size: 20px;">Create New URL</a>
             </div>
           </div>
         </nav>
@@ -24,18 +31,37 @@
   
   <div class="card text-center">
       <div class="card-header"></div>
-      <div class="card-body">
-        <h5 class="card-title">TinyURL for: <%= longURL %></h5>
-        <p class="card-text">Short URL: <a href="/u/<%= shortURL %>"><%= shortURL %></a></p>
+      <div class="card-body"
+     >
+        <h5 class="card-title" 
+        style="font-family: Rajdhani, sans-serif; font-size: 40px"
+        style="font-family:Rajdhani, sans-serif; font-size: 55px;">TinyURL for: <%= longURL %></h5>
+        <p class="card-text"
+        style="font-family: Rajdhani, sans-serif; font-size: 25px"
+        >Short URL: <a href="/u/<%= shortURL %>"><%= shortURL %></a></p>
       </div>
     <div class="card-footer text-muted"></div>
   </div>
   <div class="card text-center">
-  <div class="card-body">
-    <h5 class="card-title">Edit</h5>
-    <p class="card-text">New URL: <form class="form-inline" action="/urls/<%= shortURL %>" method="POST">
-      <input class="form-control" type="text" name="longURL" placeholder="http://" style="width: 300px; margin: 1em">
-      <button type="submit" class="text-center">Submit</button></form></p>
+  <div class="card-body" >
+    <h5 class="card-title"
+    style="font-family: Rajdhani, sans-serif; font-size: 30px">Edit</h5>
+    <p class="card-text"
+    style="font-family: Rajdhani, sans-serif; font-size: 20px"
+    >New URL:<form class="form-inline" " action="/urls/<%= shortURL %> " styles="width: 30vw, display: flex; flex-direction: column" method="POST">
+
+      <input class="form-control" type="text" name="longURL" placeholder="http://" style="font-family: Rajdhani, sans-serif; width: 300px; margin-left: 47rem; margin-right: 2rem;">
+      <br><br> </form><button 
+      style="
+      border: 1px solid black;
+      background-color: white;
+      color: black;
+      font-family:Rajdhani, sans-serif;
+      width: 5.5rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    "
+      type="submit" class="text-center">SUBMIT</button></p>
 </div>
   </div>
   <!-- Bootstrap JS -->
