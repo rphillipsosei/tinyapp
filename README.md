@@ -1,4 +1,4 @@
-# TinyApp Project
+# TinyApp
 
 A clone of a certain well-known social media site that allows users to share their thoughts in real time
 
