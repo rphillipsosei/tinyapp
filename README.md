@@ -4,11 +4,11 @@ A clone of a certain well-known social media site that allows users to share the
 
 ## Final Product
 
-!["Screenshot of Log In page"](https://github.com/rphillipsosei/tinyapp/blob/master/docs/login.png?raw=true)
+!["Log In page"](https://github.com/rphillipsosei/tinyapp/blob/master/docs/login-pg.png)
 
-!["Screenshot of Create TinyURL page"](https://github.com/rphillipsosei/tinyapp/blob/master/docs/create_url.png)
+!["Screenshot of Create TinyURL page"](https://github.com/rphillipsosei/tinyapp/blob/master/docs/create-url.png)
 
-!["Screenshot of URLs page"](https://github.com/rphillipsosei/tinyapp/blob/master/docs/urls_page.png?raw=true)
+!["Screenshot of URLs page"](https://github.com/rphillipsosei/tinyapp/blob/master/docs/my-urls.png)
 
 ## Dependencies
 
