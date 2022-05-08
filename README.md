@@ -1,6 +1,6 @@
 # TinyApp
 
-A clone of a certain well-known social media site that allows users to share their thoughts in real time
+An app which allows users to create and store short URLs for their everyday websites.
 
 ## Final Product
 
