@@ -47,11 +47,23 @@
     <h5 class="card-title"
     style="font-family: Rajdhani, sans-serif; font-size: 30px">Edit</h5>
     <p class="card-text"
-    style="font-family: Rajdhani, sans-serif; font-size: 20px"
-    >New URL:<form class="form-inline" " action="/urls/<%= shortURL %> " styles="width: 30vw, display: flex; flex-direction: column" method="POST">
+    style="font-family: Rajdhani, sans-serif; font-size: 20px"> 
+    New URL:
+    <form 
+    method="POST"
+    class="form-inline" 
+    action="/urls/<%= shortURL %> " 
+    styles="width: 30vw, display: flex; flex-direction: column"> 
 
-      <input class="form-control" type="text" name="longURL" placeholder="http://" style="font-family: Rajdhani, sans-serif; width: 300px; margin-left: 47rem; margin-right: 2rem;">
-      <br><br> </form><button 
+      <input 
+      value="<%= longURL %>",
+      class="form-control" 
+      type="text" name="longURL" 
+      placeholder="http://" 
+      style="font-family: Rajdhani, sans-serif; width: 300px; margin-left: 47rem; margin-right: 2rem;">
+      <br><br> </form>
+      
+      <button 
       style="
       border: 1px solid black;
       background-color: white;
@@ -61,7 +73,9 @@
       cursor: pointer;
       margin-top: 1rem;
     "
-      type="submit" class="text-center">SUBMIT</button></p>
+      type="submit" class="text-center">SUBMIT</button>
+    
+    </p>
 </div>
   </div>
   <!-- Bootstrap JS -->

@@ -106,18 +106,30 @@ app.get("/urls/:shortURL", (req, res) => {
 });
 
 app.post("/urls", (req, res) => {
-  const userID = req.session.user_id;
-  if(!userID){
-    return res.status(401).send("You are not authorized to make this change.");
+   if (req.session['user_id']) {
+    let randomID = generateRandomString(6);
+    urlDatabase[randomID] = {
+      longURL: req.body.longURL,
+      userID: req.session['user_id']
+    }
+    res.redirect(`/urls`);
   } else {
-  const shortURL = generateRandomString(6);
-  const longURL = req.body.longURL;
-  urlDatabase[shortURL] = {
-    longURL: longURL,
-    userID: userID,
+    res.status(400).send("Please log in to create new URLs.")
+  }
+});
+app.get("/urls/:shortURL", (req, res) => {
+  const shortURL = req.params.shortURL;
+  if (!urlDatabase[shortURL]) {
+    res.send("Page does not exist");
   };
-  res.redirect("/urls");
-}
+  const templateVars = {
+    cookie: req.session,
+    username: req.session['user_id'],
+    shortURL: req.params.shortURL,
+    longURL: urlDatabase[shortURL].longURL,
+    creator: urlDatabase[shortURL].userID
+  }
+  res.render("urls_show", templateVars);
 });
 
 app.get("/u/:shortURL", (req, res) => {
