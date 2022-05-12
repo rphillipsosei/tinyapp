@@ -11,7 +11,7 @@
   <nav class="navbar navbar-expand-md navbar-dark bg-success
   " styles="background-color: blue !important;">
     <a class="navbar-brand" href="/urls" 
-    style="font-family:Rajdhani, sans-serif; font-size: 55px;">TinyApp</a>
+    style="font-family:Rajdhani, sans-serif; font-size: 55px; color: #000000">TinyApp</a>
     <button
     style="font-family:Rajdhani;"
       class="navbar-toggler"
@@ -28,16 +28,16 @@
         
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="/urls" 
-        style="font-family:Rajdhani; font-size: 20px;">My URLs</a>
+        style="font-family:Rajdhani; font-size: 24px; color: #000000"; font-weight: bold;" >My URLs</a>
         <a class="nav-item nav-link" href="/urls/new"
-        style="font-family:Rajdhani; font-size: 20px;"
+        style="font-family:Rajdhani; font-size: 24px; color: #000000"
         >Create New URL</a>
       </div>
  
           <% if (!user) { %>
         <div class="d-flex navbar-nav align-items-center ml-auto">            
-          <a class="nav-item nav-link"  style="font-family:Rajdhani; font-size: 20px;" href="/register">Register</a>
-          <a class="nav-item nav-link"  style="font-family:Rajdhani; font-size: 20px;" href="/login">Login</a>
+          <a class="nav-item nav-link"  style="font-family:Rajdhani; font-size: 24px; color: #000000" href="/register">Register</a>
+          <a class="nav-item nav-link"  style="font-family:Rajdhani; font-size: 24px; color: #000000" href="/login">Login</a>
         </div>          
           <% } else { %>
          
@@ -48,8 +48,8 @@
        display: flex;
        justify-content: space-between;
         ">
-            <p class="text-white"
-            style="font-family:Rajdhani; font-size: 20px;"
+            <p 
+            style="font-family:Rajdhani; font-size: 20px; color: #000000"
             >
               <b>Logged in as: </b>
               <%=user.email%>
@@ -58,10 +58,10 @@
             <button 
             style="
         
-            border-color: white;
-            color: white;
+            border-color:#000000;
+            color: #000000;
             font-family:Rajdhani;
-            font-size: 20px;
+            font-size: 22px;
           "
             type="submit" class="btn btn-outline-dark mx-2">
               LOGOUT

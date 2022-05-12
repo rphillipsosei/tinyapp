@@ -132,9 +132,14 @@ app.get("/urls/:shortURL", (req, res) => {
   res.render("urls_show", templateVars);
 });
 
+
+
+
+
 app.get("/u/:shortURL", (req, res) => {
+  console.log(req.params.shortURL)
   const shortURL = urlDatabase[req.params.shortURL]
-  
+  console.log(req.params.shortURL)
   if(!shortURL){
     return res.status(404).send("This URL does not exist");
   } else {
