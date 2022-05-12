@@ -1,14 +1,14 @@
-# TinyApp Project
+# TinyApp
 
-A clone of a certain well-known social media site that allows users to share their thoughts in real time
+An app which allows users to create and store short URLs for their everyday websites.
 
 ## Final Product
 
-!["Screenshot of Log In page"](https://github.com/rphillipsosei/tinyapp/blob/master/docs/login.png?raw=true)
+!["Log In page"](https://github.com/rphillipsosei/tinyapp/blob/master/docs/login-pg.png)
 
-!["Screenshot of Create TinyURL page"](https://github.com/rphillipsosei/tinyapp/blob/master/docs/create_url.png)
+!["Screenshot of Create TinyURL page"](https://github.com/rphillipsosei/tinyapp/blob/master/docs/create-url.png)
 
-!["Screenshot of URLs page"](https://github.com/rphillipsosei/tinyapp/blob/master/docs/urls_page.png?raw=true)
+!["Screenshot of URLs page"](https://github.com/rphillipsosei/tinyapp/blob/master/docs/my-urls.png)
 
 ## Dependencies
 
@@ -22,4 +22,4 @@ A clone of a certain well-known social media site that allows users to share the
 ## Getting Started
 
 - Install all dependencies (using the `npm install` command).
-- Run the development web server using the `node express_server.js` command.
+- Run the web server using the `npm start` command.
